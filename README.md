@@ -30,3 +30,5 @@ Con la misma estrategia, se informa cuando un elemento es ingresado al carrito.
 Meidante providers, se persiste la información necesaria, tanto de Usuario como de Carrito. 
 
 En caso de que el producto seleccionado ya exista en el carrito, se agrega solo la cantidad deseada
+
+Se deja la responsabilidad de la conexión a la BD al archivo conexionBD.js
