@@ -1,23 +1,37 @@
-import React from 'react'
-import useServiciosApi from '../../hooks/useServiciosApi'
-import ItemsListado from './ItemsListado'
+import React, { useState, useEffect } from 'react';
+import ItemsListado from './ItemsListado';
+import { getDocs } from 'firebase/firestore';
+import { retornaElementos, filtrarCategoria } from '../../conexion/conexionDB';
 
-const ItemListContainer = ({estado}) => {
-  
-  let url = estado == undefined ? "https://rickandmortyapi.com/api/character/?page=1" : (`https://rickandmortyapi.com/api/character/?page=2&name=rick&status=${estado}`)  
-  const { data, isLoading } = useServiciosApi(url);
-  
-  if (isLoading) {
-    return <div>Cargando...</div>;
-  }
+const ItemListContainer = ({ categoria }) => {
+  const [elementos, setElementos] = useState([]);
 
-  const elementos = Array.isArray(data.results) ? data.results : [];
+  useEffect(() => {
+    const fetchData = async () => {
+      let query;
+      if (categoria) {
+        query = filtrarCategoria("productos", categoria);
+      } else {
+        query = retornaElementos("productos");
+      }
+
+      try {
+        const snapshot = await getDocs(query);
+        const datos = snapshot.docs.map((document) => ({ id: document.id, ...document.data() }));
+        setElementos(datos);
+      } catch (error) {
+        console.error("No se pudieron obtner los datos:", error);
+      }
+    };
+
+    fetchData();
+  }, [categoria]);
 
   return (
     <div className='card-container'>
-      { elementos !=null && <ItemsListado elementos={elementos}/>}
+      {elementos != null && <ItemsListado elementos={elementos} />}
     </div>
-  )
+  );
 }
 
-export default ItemListContainer
+export default ItemListContainer;

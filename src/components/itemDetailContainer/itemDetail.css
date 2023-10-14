@@ -1,6 +1,74 @@
-.contenedor{
+/*  Contenedor principal */
+.contenedor {
     display: flex;
-    align-items: center;
     justify-content: center;
-    padding: 2rem;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  /* Card */
+  .detalle-card {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    align-items: center;
+    width: 48rem;
+    padding: 10px;
+    text-align: center; 
+  }
+  
+  /* Imagen*/
+  .img-prod {
+    max-width: 200%;
+    max-height: 400px;
+    width: auto;
+    height: auto;
+  }
+  
+  /* Contenido del card */
+  .card-body {
+    text-align: left;
+  }
+  
+  .card-title {
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  li {
+    margin-bottom: 5px;
+  }
+  
+  /* Botón */
+  .btn-success {
+    width: 100%; 
+    margin: 20px auto;
+  }
+  .img-cart{
+    max-width: 10%;
+    max-height: 10%;
+    width: auto;
+    height: auto;
+    padding: 1rem;
+  }
+
+.contenedor-elemento {
+  display: flex;
+  align-items: center;
 }
+
+
+.texto-y-botones {
+  display: flex;
+  flex-direction: column; 
+}
+
+.btn-eliminar {
+  font-size: 12px; 
+  padding: 4px 8px; 
+}
+

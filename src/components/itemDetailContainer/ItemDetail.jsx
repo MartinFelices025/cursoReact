@@ -1,36 +1,30 @@
 import React from 'react'
+import Contador from '../contadorCarrito/contador'
 
-const ItemDetail = ({data}) => {
+const ItemDetail = ({data, agegarProducto}) => {
   return (
     <div className='contenedor'>
-    <div className={`card detalle card mi-clase 
-                                                ${data.status == 'Alive' 
-                                                ? 'text-bg-success' 
-                                                : data.status == 'Dead' 
-                                                ? 'text-bg-secondary' 
-                                                : 'text-bg-danger'}`} 
-                                                style={{ width: '32rem'}}>
-    <img src={data.image} className="card-img-top" alt="..." />
+    <div className="card detalle card detalle-card text-bg-success" style={{ width: '52rem'}}>
+    <img src={`/src/components/imagenes/${data.img}`} className="card-img-top img-prod" alt="..." />
     <div className="card-body">
-      <h5 className="card-title">{data.name}</h5>
+      <h4 className="card-title">{`$ ${data.precio}`}</h4>
+      <h5 className="card-title">{data.titulo}</h5>
       <ul>
         <li>
-        <p className="card-text">Creado: {data.created}</p>
+        <p className="card-text">Autor: {data.autor}</p>
         </li>
         <li>
-        <p className="card-text">Especie: {data.species}</p>
+        <p className="card-text">Genero: {data.genero}</p>
         </li>
         <li>
-        <p className="card-text">Genero: {data.gender}</p>
+        <p className="card-text">Stock: {data.stock}</p>
         </li>
         <li>
-        <p className="card-text">Origen: {data.location.name}</p>
-        </li>
-        <li>
-        <p className="card-text">Estado: {data.status}</p>
+        <p className="card-text">Descripcion: {data.descripcion}</p>
         </li>
       </ul>
     </div>
+    <Contador agegarProducto={agegarProducto} stock={data.stock}/>
   </div>
   </div>
   )

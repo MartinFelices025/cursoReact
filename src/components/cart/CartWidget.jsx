@@ -1,10 +1,10 @@
 import React from 'react'
 import { FaCartPlus } from 'react-icons/fa'
-const CartWidget = () => {
+const CartWidget = ({cantidad}) => {
   return (
     <>
-      <span className="badge bg-dark">0</span>
       <FaCartPlus className="cart" />
+      <span className="badge bg-dark">{cantidad}</span>
     </>
   )
 }

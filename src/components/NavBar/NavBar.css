@@ -2,3 +2,8 @@
     margin: 1rem;
     font-size: 28px;
   }
+
+  a.disabled {
+    color: gray;
+    pointer-events: none;
+  }

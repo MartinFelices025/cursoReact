@@ -1,16 +1,37 @@
 import React from 'react'
-import useServiciosApi from '../../hooks/useServiciosApi';
 import ItemDetail from './ItemDetail';
+import { useState, useEffect, useContext} from 'react'
+import { obtenerElemento } from '../../conexion/conexionDB';
+import {getDoc} from "firebase/firestore";
+import CartContext from '../../provider/cartContext';
 
 const ItemDetailContainer = ({id}) => {  
-    const { data, isLoading } = useServiciosApi((`https://rickandmortyapi.com/api/character/${id}`));
+    
+    const [data, setdata] = useState([]);
 
-    if (isLoading) {
-        return <div>Cargando...</div>;
-      }
+    const agegarProducto = (cant) => {agregarelemento(data, cant)
+  }
+  const { agregarelemento } = useContext(CartContext);
+  
+    useEffect(() => {
+      const data = obtenerElemento("productos", id)
 
+      getDoc(data)
+          .then( (snapshot) =>{
+              console.log(snapshot.exists())
+              if(snapshot.exists()) {
+                  
+                setdata({
+                      id: snapshot.id,
+                      ...snapshot.data()
+                  })
+              }
+          })
+          .catch((err) => console.log(err))
+
+  }, [id, agregarelemento])
   return (
-   <ItemDetail data={data}/>
+   <ItemDetail data={data} agegarProducto={agegarProducto}/>
   )
 }
 

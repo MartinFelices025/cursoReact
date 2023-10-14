@@ -6,6 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import './components/NavBar/NavBar.css'
 import './components/ItemListContainer/ItemListContainer.css'
 import './components/itemDetailContainer/ItemDetail.css'
+import './components/contadorCarrito/contador.css'
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
